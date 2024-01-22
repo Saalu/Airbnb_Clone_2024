@@ -13,7 +13,7 @@ const Search = () => {
     py-2
     rounded-full
     shadow-sm
-    hover-shadow-md
+    hover:shadow-md
     transition
     cursor-pointer
     "
@@ -47,7 +47,7 @@ const Search = () => {
             text-center
             "
             >
-            Anywhere
+            Any Week
             </div>
             <div
             className="
