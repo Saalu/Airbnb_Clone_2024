@@ -13,11 +13,6 @@ const useRegisterModals = create<RegisterModalStore> ((set) =>({
 
 })) 
 
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
+
 
 export default useRegisterModals
