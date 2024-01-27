@@ -41,11 +41,12 @@ const Modals: React.FC<ModalProps> = ({
     },[disabled, onClose])
 
     const handleSubmit = useCallback(() =>{
-        if(disabled){
+        if(disabled ){
             return
         }
 
-     
+        onSubmit()
+        
     },[disabled, onSubmit])
 
     const handleSecondaryAction = useCallback(() =>{
@@ -100,7 +101,7 @@ const Modals: React.FC<ModalProps> = ({
                 {/* BODY */}
                 <div className="relative p-6 flex-auto">{body}</div>
                 {/* FOOTER */}
-                <div className="flex flex-col gap-2 p-6">{footer}
+                <div className="flex flex-col gap-2 p-6">
                 <div className="flex flex-row items-center gap-4 w-full">
 
                    {secondaryAction && secondaryActionLabel && (
@@ -119,6 +120,7 @@ const Modals: React.FC<ModalProps> = ({
                     onClick={handleSubmit}
                     />
                 </div>
+                {footer}
                 </div>
                 </div>
             </div>
