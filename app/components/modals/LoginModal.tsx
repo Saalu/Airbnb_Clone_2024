@@ -17,10 +17,13 @@ import { Modak } from 'next/font/google';
 import Modals from './Modals';
 import Heading from '../Heading';
 import Input from '../Input';
-import toast from 'react-hot-toast';
+import{ toast} from 'react-hot-toast';
 import Button from '../Button';
+import { useRouter } from 'next/navigation';
+
 
 const LoginModals = () => {
+    const router = useRouter()
     const loginModal = useLoginModal()
     const registerModal = useRegisterModal()
     const [isLoading, setIsLoading] = useState(false)
@@ -39,18 +42,27 @@ const LoginModals = () => {
     })
 
     const onSubmit: SubmitHandler<FieldValues> = (data) =>{
-        setIsLoading(true)
-        console.log('Continue Clicked');
-        axios.post('/api/login', data)
-            .then(() => {
+        setIsLoading(true) 
+            // =========================/////==============//
+        signIn('credentials', {
+            ...data,
+            redirect: false,
+        })
+        .then((callback) =>{
+            setIsLoading(false)
+
+            if(callback?.ok){
+                toast.success('Logged in')
+                router.refresh()
                 loginModal.onClose()
-            })
-            .catch(error =>{
-                toast.error('Something went wrong')
-            })
-            .finally(() =>{
-                setIsLoading(false)
-            })
+
+                    console.log('Login Success!')
+            }
+
+            // if(callback?.error){
+            //     // toast.error(callback.error)
+            // }
+        })
     }
 
     const bodyContent = (
